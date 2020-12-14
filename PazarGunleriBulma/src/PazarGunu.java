@@ -1,6 +1,21 @@
+import java.time.LocalDate;
+import java.time.Period;
+
 public class PazarGunu {
     public static void main(String[] args) {
 
+        LocalDate startDate = LocalDate.of(1900,1,1);
+        LocalDate endDate = LocalDate.of(2000,12,31);
+
+        startDate.datesUntil(endDate, Period.ofDays(1)).forEach(date -> {
+            // System.out.println("ss");
+            if(date.getDayOfMonth() ==  1 && date.getDayOfWeek().toString().equals("SUNDAY")){
+                System.out.println(date.toString());
+            }
+
+        });
+
+        /*
         int Son_yıl = 2000;
 
         int[] Ay_gun = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -33,5 +48,6 @@ public class PazarGunu {
                 }
             }
         }
+        */
     }
 }
