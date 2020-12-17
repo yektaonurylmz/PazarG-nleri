@@ -4,16 +4,29 @@ import java.time.Period;
 public class PazarGunu {
     public static void main(String[] args) {
 
-        LocalDate startDate = LocalDate.of(1900,1,1);
-        LocalDate endDate = LocalDate.of(2000,12,31);
-
-        startDate.datesUntil(endDate, Period.ofDays(1)).forEach(date -> {
-            // System.out.println("ss");
-            if(date.getDayOfMonth() ==  1 && date.getDayOfWeek().toString().equals("SUNDAY")){
-                System.out.println(date.toString());
+        int day = 1;
+        int startYear = 1900, endYear = 2000;
+        int[] MouthDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        for (int year = startYear; year <= endYear; year++) {
+            if (year % 4 == 0 && year % 100 != 0 ) {
+                MouthDays[1]=29;
             }
+            int ay = 0;
 
-        });
+            while (ay <=MouthDays.length-1) {
+
+                day +=  MouthDays[ay];
+
+                if(day%7 == 0 && ay==11){
+                    System.out.println("01.1." + (year+1) );
+                }
+                else if (day%7 == 0){
+                    System.out.println("01." + (ay+2) + "." + year );
+                }
+                ay++;
+            }
+        }
+    }
 
         /*
         int Son_yıl = 2000;
