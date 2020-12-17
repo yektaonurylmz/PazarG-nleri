@@ -23,7 +23,7 @@ public class PazarGunu {
                     System.out.println("01.Ocak." + (year+1) );
                 }
                 else if (day%7 == 0){
-                    System.out.println("01." + (MountName[ay+1]) + "." + year );
+                    System.out.println("01." + (MountName[ay+1]) + year );
                 }
                 ay++;
             }
