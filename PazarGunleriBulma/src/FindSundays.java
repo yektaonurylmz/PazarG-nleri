@@ -31,7 +31,7 @@ public class FindSundays implements IFindSundays {
     }
 
     @Override
-    public void Hesapla(int day, int mouth, int startYear, int endYear) {
+    public void Hesapla(int day,int mouth, int startYear, int endYear) {
 
         for (int year = startYear; year <= endYear; year++) {
 
@@ -44,8 +44,10 @@ public class FindSundays implements IFindSundays {
 
                 day +=  DaysOfMonths[mouth];
 
+                day = (day%7); // 12 bit'lik değeri aşmayacak şekilde düzenlendi;
+
                 switch (LastMonth(day,mouth)? 1:0){
-                    case 1: System.out.println(PrintFirstMonthOfYear(year));
+                    case 1 : System.out.println(PrintFirstMonthOfYear(year));
                     break;
                     case 0:
                         switch (Sunday(day) ? 1 : 0) {
