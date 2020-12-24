@@ -1,4 +1,5 @@
-
+import java.time.LocalDate;
+import java.time.Period;
 
 public class FindSundays implements IFindSundays {
 
@@ -31,7 +32,7 @@ public class FindSundays implements IFindSundays {
     }
 
     @Override
-    public void Calculate(int day, int mouth, int startYear, int endYear) {
+    public void Calculate(int day, int month, int startYear, int endYear) {
 
         for (int year = startYear; year <= endYear; year++) {
 
@@ -39,29 +40,40 @@ public class FindSundays implements IFindSundays {
                 DaysOfMonths[1]=29;
             }else
                 DaysOfMonths[1]=28;
-            mouth=0;
-            while (mouth < DaysOfMonths.length){
+            month=0;
+            while (month < DaysOfMonths.length){
 
-                day +=  DaysOfMonths[mouth];
+                day +=  DaysOfMonths[month];
 
-                day = (day%7); // 12 bit'lik değeri aşmayacak şekilde düzenlendi;
+                day = (day%7);
 
-                switch (LastMonthOfYear(day,mouth)? 1:0){
+                switch (LastMonthOfYear(day,month)? 1:0){
                     case 1 : System.out.println(PrintFirstMonthOfYear(year));
                     break;
                     case 0:
                         switch (Sunday(day) ? 1 : 0) {
-                            case 1 -> System.out.println(PrintConsole(mouth, MonthName, year));
+                            case 1 -> System.out.println(PrintConsole(month, MonthName, year));
                         }
                 }
-                mouth++;
+                month++;
             }
         }
     }
 
     public static void main(String[] args) {
-        FindSundays findSundays=new FindSundays();
-            findSundays.Calculate(1,0,1900,2000);
+         FindSundays findSundays=new FindSundays();
+         findSundays.Calculate(1,0,1900,2000);
+
+        //LocalDate startDate = LocalDate.of(1900,1,1);
+        //LocalDate endDate = LocalDate.of(2000,12,31);
+        //
+        //startDate.datesUntil(endDate, Period.ofDays(1)).forEach(date -> {
+        //
+        //    if(date.getDayOfMonth() ==  1 && date.getDayOfWeek().toString().equals("SUNDAY")){
+        //        System.out.println(date.toString());
+        //    }
+        //
+        //});
     }
 }
 
